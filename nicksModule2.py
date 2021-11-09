@@ -37,9 +37,22 @@ def makeOrthorombicSupercellFilesFromCommandLine():
     
     # Extract the dimensions from input.
     # Sets the maximum value to the minimum value if no maximum value is provided.
-    xDim = [int(xDimInput[0]), int(xDimInput[0]) if len(xDimInput) == 1 else int(xDimInput[1])]
-    yDim = [int(yDimInput[0]), int(yDimInput[0]) if len(yDimInput) == 1 else int(yDimInput[1])]
-    zDim = [int(zDimInput[0]), int(zDimInput[0]) if len(zDimInput) == 1 else int(xDimInput[1])]
+    xMin = int(xDimInput[0])
+    xMax = int(xDimInput[0]) if len(xDimInput) == 1 else int(xDimInput[1])
+
+    yMin = int(yDimInput[0])
+    yMax = int(yDimInput[0]) if len(yDimInput) == 1 else int(yDimInput[1])
+
+    zMin = int(zDimInput[0])
+    zMax = int(zDimInput[0]) if len(zDimInput) == 1 else int(zDimInput[1])
+
+    
+    # xDim = [int(xDimInput[0]), int(xDimInput[0]) if len(xDimInput) == 1 else int(xDimInput[1])]
+    # yDim = [int(yDimInput[0]), int(yDimInput[0]) if len(yDimInput) == 1 else int(yDimInput[1])]
+    # zDim = [int(zDimInput[0]), int(zDimInput[0]) if len(zDimInput) == 1 else int(xDimInput[1])]
+    xDim = [xMin,xMax]
+    yDim = [yMin,yMax]
+    zDim = [zMin,zMax]
 
     newFileNames = makeOrthorombicSupercellFiles(topologyFile,xDim,yDim,zDim)
     return newFileNames
@@ -92,6 +105,9 @@ def makeOrthorombicSupercellFile(topologyFileName, x, y, z):
     """
     
     print("making orthorombic supercell of size {} {} {}".format(x,y,z))
+
+    if x <2 or y <2 or z<2:
+        raise ValueError("minimum size of 2x2x2 required")
     molObject = molsys.mol.from_file(topologyFileName)
     size =[x,y,z]
 
@@ -128,12 +144,14 @@ def makeOrthorombicSupercellFile(topologyFileName, x, y, z):
     return newFileName
 
 def addBBsToSupercellFiles(supercellFileNames, metalBB, BB1, BB2, BB1stub, BB2stub):
+    #TODO Description
+    newFileNames = []
     for supercellFile in supercellFileNames:
-        addBBsToSupercellFile(supercellFile, metalBB, BB1, BB2, BB1stub, BB2stub)
-    return
+        newFileNames.append(addBBsToSupercellFile(supercellFile, metalBB, BB1, BB2, BB1stub, BB2stub))
+    return newFileNames
 
 def addBBsToSupercellFile(supercellFile, metalBB, BB1, BB2, BB1stub, BB2stub):
-    
+    #TODO: Description
     #1 Instanciate Framework
     f = weaver.framework("test-MOF")
     
@@ -156,7 +174,13 @@ def addBBsToSupercellFile(supercellFile, metalBB, BB1, BB2, BB1stub, BB2stub):
     f.generate_framework([0]*len(f.norientations))
     
     #6 write file
-    f.write_framework(os.path.splitext(supercellFile)[0] + "_withBBs.mfpx")
+    newFileName = os.path.splitext(supercellFile)[0] + "_withBBs.mfpx"
+    f.write_framework(newFileName)
+    return newFileName
+
+def assignParamsToMfpxFiles(mfpxFileNames):
+    for name in mfpxFileNames:
+        assignParamsToMfpxFile(name)
     return
 
 def assignParamsToMfpxFile(mfpxFileName):
@@ -201,4 +225,13 @@ def fixDut8ncfpar(mfpxFileName):
     f.close()
     
     return
+
+def moveGeneratedFiles():
+    for f in os.listdir():
+        if f.startswith("orthorombic"):
+            shutil.move(f,"test/")
+
+
+
+
 
