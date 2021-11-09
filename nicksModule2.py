@@ -9,6 +9,7 @@ import weaver
 import shutil
 
 def makeOrthorombicSupercellFilesFromCommandLine():
+    # TODO:Add description of this function
     
     def validateInput():
         E = """Make sure to execute this file with proper arguments:
@@ -24,7 +25,8 @@ def makeOrthorombicSupercellFilesFromCommandLine():
         elif len(sys.argv) < 5:
             raise ValueError(D + E)
         return
-    
+
+    # Raises error message if arguments in the command line are missing.
     validateInput()
     
     # Read topology file and x,y,z dimensions from command line input.
@@ -39,10 +41,10 @@ def makeOrthorombicSupercellFilesFromCommandLine():
     yDim = [int(yDimInput[0]), int(yDimInput[0]) if len(yDimInput) == 1 else int(yDimInput[1])]
     zDim = [int(zDimInput[0]), int(zDimInput[0]) if len(zDimInput) == 1 else int(xDimInput[1])]
 
-    makeOrthorombicSupercellFiles(topologyFile,xDim,yDim,zDim)
-    return
+    newFileNames = makeOrthorombicSupercellFiles(topologyFile,xDim,yDim,zDim)
+    return newFileNames
 
-def makeOrthorombicSupercellFiles(topologyFileNames, xDim: list, yDim: list, zDim: list):
+def makeOrthorombicSupercellFiles(topologyFileName, xDim: list, yDim: list, zDim: list):
     """Makes multiple supercell files by calling @makeOrthorombicSupercellFile.
 
     Args:
@@ -50,6 +52,8 @@ def makeOrthorombicSupercellFiles(topologyFileNames, xDim: list, yDim: list, zDi
         xDim (list): Dimensions of number of paddlewheel units in x direction.
         yDim (list): Dimensions of number of paddlewheel units in y direction.
         zDim (list): Dimensions of number of paddlewheel units in z direction.
+    Returns:
+        A list of names of the newly made orthorombic supercell files.
     """
     
     #Calculate minimum and maximum values for x,y and z.
@@ -64,11 +68,15 @@ def makeOrthorombicSupercellFiles(topologyFileNames, xDim: list, yDim: list, zDi
 
     # Make multiple supercell files
 
+    newFileNames = []
+
     for x in range(xMin,xMax+1):
         for y in range(yMin,yMax+1):
             for z in range(zMin,zMax+1):
-                makeOrthorombicSupercellFile(topologyFileNames,x,y,z)
-    return
+                newFileName = makeOrthorombicSupercellFile(topologyFileName,x,y,z)
+                newFileNames.append(newFileName)
+
+    return newFileNames
 
 def makeOrthorombicSupercellFile(topologyFileName, x, y, z):
     """Creates a supercell with the dimensions [x,y,z] by providing a topology.mfpx file
@@ -79,9 +87,11 @@ def makeOrthorombicSupercellFile(topologyFileName, x, y, z):
         x: number of paddle-wheels in x-Dimension
         y: number of paddle-wheels in y-Dimension
         z: number of paddle-wheels in z-Dimension
+    Returns:
+        A string of the name of the newly made orthorombic supercell file.
     """
     
-    print("making supercell of size {} {} {}".format(x,y,z))
+    print("making orthorombic supercell of size {} {} {}".format(x,y,z))
     molObject = molsys.mol.from_file(topologyFileName)
     size =[x,y,z]
 
@@ -113,9 +123,9 @@ def makeOrthorombicSupercellFile(topologyFileName, x, y, z):
     s.set_stub("0", "i", "4", 0.5, plane_name="zm")
 
     molObject = s(supercell=supercell.astype(int).tolist(),orig=orig,max_dist=2.0)
-    name = "orthorombicSupercell_{}_{}_{}.mfpx".format(x,y,z)
-    molObject.write(name)
-    return
+    newFileName = "orthorombicSupercell_{}_{}_{}.mfpx".format(x,y,z)
+    molObject.write(newFileName)
+    return newFileName
 
 def addBBsToSupercellFiles(supercellFileNames, metalBB, BB1, BB2, BB1stub, BB2stub):
     for supercellFile in supercellFileNames:
@@ -151,26 +161,34 @@ def addBBsToSupercellFile(supercellFile, metalBB, BB1, BB2, BB1stub, BB2stub):
 
 def assignParamsToMfpxFile(mfpxFileName):
     
-    # Bash command 
+    #1 Bash command 
+    print("Initiate bash cmd atype {}".format(mfpxFileName))
     atypeOutput = subprocess.getoutput("atype {}".format(mfpxFileName))
-    # Bash command
+    #2 Bash command
+    print("Initiate bash cmd fragmentize {}".format(mfpxFileName))
     fragmentizeOutput = subprocess.getoutput("fragmentize {}".format(mfpxFileName))
     
+    #3 Fix atom types
     fixAtypesFragments(mfpxFileName)
-    
+    #4 Get ff-params
     queryFFParametersOutput = subprocess.getoutput("""query_parameters {} 'MOF-FF JULIAN-FF' fit""".format(mfpxFileName))
     
+    #5 Fix mistakes in fpar file
     fixDut8ncfpar(mfpxFileName)
     
     return
 
 def fixAtypesFragments(mfpxFileName):
+    print("fixAtypesFragments called on filename {}".format(mfpxFileName))
     os.system("sed -i -e s/dab1/dab/g {}".format(mfpxFileName))
     os.system("sed -i -e s/n3_c3/n4_c3x1 {}".format(mfpxFileName))
     return
 
 def fixDut8ncfpar(mfpxFileName):
-    f = open(mfpxFileName + ".fpar")
+
+    fparFileName = mfpxFileName.split(".")[0]+ ".fpar"
+    print("fixDut8ncfpar called on filename {}".format(fparFileName))
+    f = open(fparFileName)
     text = f.read()
     f.close()
 
@@ -179,6 +197,7 @@ def fixDut8ncfpar(mfpxFileName):
 
     f=open(mfpxFileName.rsplit('.',1)[0]+'.par',"w")
     f.write(text)
+    print("write "+ mfpxFileName.rsplit('.',1)[0]+'.par')
     f.close()
     
     return
