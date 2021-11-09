@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+#SBATCH --job-name=nickscoolerjob
+#SBATCH --ntasks=8
+#SBATCH --nodes=1
+#SBATCH --error=job.%J.err 
+#SBATCH --output=job.%J.out
+#SBATCH --mail-type=ALL
+#SBATCH --partition=compute
+#SBATCH --time=3-00:00:00
+
+#SED_ME_FOR_SETTINGS
+
+SCRATCH=/scratch/$USER/$SLURM_JOB_ID
+srun mkdir -p $SCRATCH
+for f in run_steered_md.py DH-nano_7_latopt.* ; do
+    sbcast $f $SCRATCH/$f
+done
+cd $SCRATCH
+mpirun -np 8 python run_steered_md.py
+cd $SLURM_SUBMIT_DIR
+cp -r $SCRATCH/* $SLURM_SUBMIT_DIR
+srun rm -rf $SCRATCH
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+name: molsys_nogcc
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.8
+  - numpy
+  - scipy
+  - graph-tool
+  - openbabel
+  - xtb-python
+  - packmol
+  - pip
+  - pip:
+     - mpi4py
+     - h5py     
+     - pydal
+     - cma
+     - spglib
+     - pymatgen
+     - ase
+     - pycifrw
+     - pytest
