@@ -1,6 +1,6 @@
 import nicksModule2 as nick
 
-nick.makeOrthorombicSupercellFilesFromCommandLine()
+# nick.makeOrthorombicSupercellFilesFromCommandLine()
 
 nick.addBBsToSupercellFile("orthorombicSupercell_3_3_3.mfpx",
                            "BBs/ZnPWL6.mfpx",

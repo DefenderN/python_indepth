@@ -1,4 +1,4 @@
-HASH: 33b4cf82-ccc9-4129-a9a9-be00d7dc158a
+HASH: 5a114ab7-f9fd-40bb-879a-de2347c3ce55
 FF JULIAN-FF
 
 radfact         1.0
@@ -36,9 +36,9 @@ bnd_type 11
 6                      mm3      4.55700000      1.46300000           # mm3->(c4_c1h2n1@dab,n4_c3zn1@dab)|dabco
 7                      mm3      3.83000000      1.55000000           # mm3->(c4_c1h2n1@dab,c4_c1h2n1@dab)|dabco
 8                      mm3      5.07500000      1.10100000           # mm3->(c4_c1h2n1@dab,h1_c1@dab)|dabco
-9                      mm3      7.08000000      1.39400000           # mm3->(c3_c2h1@ph,c3_c2h1@ph)|benzene
-10                     mm3      5.43000000      1.09400000           # mm3->(c3_c2h1@ph,h1_c1@ph)|benzene
-11                     mm3           $b1_0           $b1_1           # mm3->(c4_c1h2n1@dab,n3_c3@dab)|xxx
+9                      mm3      4.55700000      1.46300000           # mm3->(c4_c1h2n1@dab,n4_c3x1@dab)|dabco
+10                     mm3      7.08000000      1.39400000           # mm3->(c3_c2h1@ph,c3_c2h1@ph)|benzene
+11                     mm3      5.43000000      1.09400000           # mm3->(c3_c2h1@ph,h1_c1@ph)|benzene
 
 # Supported ang potentials mm3, fourier, quartic, strbnd
 # mm3:     E(a) = 1/2 k(a-a0)^2*[1-0.014(a-a0)+5.6e-5(a-a0)^2-7e-7(a-a0)^3+2.2e-8(a-a0)^4]
@@ -68,13 +68,13 @@ ang_type 21
 12                     mm3      0.73800000    110.29000000           # mm3->(h1_c1@dab,c4_c1h2n1@dab,n4_c3zn1@dab)|dabco
 13                     mm3      0.56500000    113.92000000           # mm3->(c4_c1h2n1@dab,c4_c1h2n1@dab,h1_c1@dab)|dabco
 14                     mm3      0.47100000    110.57000000           # mm3->(h1_c1@dab,c4_c1h2n1@dab,h1_c1@dab)|dabco
-15                     mm3      0.74100000    127.05000000           # mm3->(c3_c2h1@ph,c3_c2h1@ph,c3_c2h1@ph)|benzene
-15                  strbnd      0.04700000      0.04700000      0.49900000      1.39400000      1.39400000    127.05000000           # strbnd->(c3_c2h1@ph,c3_c2h1@ph,c3_c2h1@ph)|benzene
-16                     mm3      0.50300000    120.35000000           # mm3->(c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|benzene
-16                  strbnd     -0.17500000      0.37200000      0.64900000      1.39400000      1.09400000    120.35000000           # strbnd->(c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|benzene
-17                     mm3           $a1_0           $a1_1           # mm3->(c4_c1h2n1@dab,c4_c1h2n1@dab,n3_c3@dab)|xxx
-18                     mm3           $a2_0           $a2_1           # mm3->(h1_c1@dab,c4_c1h2n1@dab,n3_c3@dab)|xxx
-19                     mm3           $a3_0           $a3_1           # mm3->(c4_c1h2n1@dab,n3_c3@dab,c4_c1h2n1@dab)|xxx
+15                     mm3      0.92200000    115.18000000           # mm3->(c4_c1h2n1@dab,c4_c1h2n1@dab,n4_c3x1@dab)|dabco
+16                     mm3      0.73800000    110.29000000           # mm3->(h1_c1@dab,c4_c1h2n1@dab,n4_c3x1@dab)|dabco
+17                     mm3      0.79400000    112.63000000           # mm3->(c4_c1h2n1@dab,n4_c3x1@dab,c4_c1h2n1@dab)|dabco
+18                     mm3      0.74100000    127.05000000           # mm3->(c3_c2h1@ph,c3_c2h1@ph,c3_c2h1@ph)|benzene
+18                  strbnd      0.04700000      0.04700000      0.49900000      1.39400000      1.39400000    127.05000000           # strbnd->(c3_c2h1@ph,c3_c2h1@ph,c3_c2h1@ph)|benzene
+19                     mm3      0.50300000    120.35000000           # mm3->(c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|benzene
+19                  strbnd     -0.17500000      0.37200000      0.64900000      1.39400000      1.09400000    120.35000000           # strbnd->(c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|benzene
 
 # Supported dih potentials cos3, cos4
 # cos3:    E(d) = Va/2[1+cos(d)]+Vb/2[1-cos(d)]+Vc/2[1+cos(d)]
@@ -104,13 +104,13 @@ dih_type 27
 18                    cos3      0.00000000      0.00000000      1.01100000           # cos3->(h1_c1@dab,c4_c1h2n1@dab,c4_c1h2n1@dab,n4_c3zn1@dab)|dabco
 19                    cos3      0.00000000      3.01000000      1.42600000           # cos3->(n4_c3zn1@dab,c4_c1h2n1@dab,c4_c1h2n1@dab,n4_c3zn1@dab)|dabco
 20                    cos3      0.00000000      0.00000000      0.39900000           # cos3->(h1_c1@dab,c4_c1h2n1@dab,c4_c1h2n1@dab,h1_c1@dab)|dabco
-21                    cos3      0.00000000      4.37900000      0.00000000           # cos3->(c3_c2h1@ph,c3_c2h1@ph,c3_c2h1@ph,c3_c2h1@ph)|benzene
-22                    cos3      0.00000000      6.31600000      0.00000000           # cos3->(c3_c2h1@ph,c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|benzene
-23                    cos3      0.00000000      5.97200000      0.00000000           # cos3->(h1_c1@ph,c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|benzene
-24                    cos3           $d1_0           $d1_1           $d1_2           # cos3->(n3_c3@dab,c4_c1h2n1@dab,c4_c1h2n1@dab,n4_c3zn1@dab)|xxx
-25                    cos3           $d2_0           $d2_1           $d2_2           # cos3->(h1_c1@dab,c4_c1h2n1@dab,c4_c1h2n1@dab,n3_c3@dab)|xxx
-26                    cos3           $d3_0           $d3_1           $d3_2           # cos3->(c4_c1h2n1@dab,c4_c1h2n1@dab,n3_c3@dab,c4_c1h2n1@dab)|xxx
-27                    cos3           $d4_0           $d4_1           $d4_2           # cos3->(h1_c1@dab,c4_c1h2n1@dab,n3_c3@dab,c4_c1h2n1@dab)|xxx
+21                    cos3      0.00000000      3.01000000      1.42600000           # cos3->(n4_c3x1@dab,c4_c1h2n1@dab,c4_c1h2n1@dab,n4_c3zn1@dab)|dabco
+22                    cos3      0.00000000      0.00000000      1.01100000           # cos3->(h1_c1@dab,c4_c1h2n1@dab,c4_c1h2n1@dab,n4_c3x1@dab)|dabco
+23                    cos3      0.49294000      0.03400000      2.66000000           # cos3->(c4_c1h2n1@dab,c4_c1h2n1@dab,n4_c3x1@dab,c4_c1h2n1@dab)|dabco
+24                    cos3      0.49000000      1.23800000      0.21700000           # cos3->(h1_c1@dab,c4_c1h2n1@dab,n4_c3x1@dab,c4_c1h2n1@dab)|dabco
+25                    cos3      0.00000000      4.37900000      0.00000000           # cos3->(c3_c2h1@ph,c3_c2h1@ph,c3_c2h1@ph,c3_c2h1@ph)|benzene
+26                    cos3      0.00000000      6.31600000      0.00000000           # cos3->(c3_c2h1@ph,c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|benzene
+27                    cos3      0.00000000      5.97200000      0.00000000           # cos3->(h1_c1@ph,c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|benzene
 
 # Supported oop potentials harm
 # harm:    E(d) = k/2*(d-d0)**2
@@ -123,7 +123,7 @@ oop_type 4
 1                     harm      0.14700000      0.00000000           # harm->(c3_c1o2@co2,c3_c3@ph,o2_c1zn1@co2,o2_c1zn1@co2)|ZnPW_dabco
 2                     harm      0.04300000      0.00000000           # harm->(c3_c3@ph,c3_c1o2@co2,c3_c2h1@ph,c3_c2h1@ph)|ZnPW_dabco
 3                     harm      0.01900000      0.00000000           # harm->(c3_c2h1@ph,c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|benzene
-4                     harm      0.00000000      0.00000000           # harm->(n3_c3@dab,c4_c1h2n1@dab,c4_c1h2n1@dab,c4_c1h2n1@dab)|xxx
+4                     harm      0.00000000      0.00000000           # harm->(n4_c3x1@dab,c4_c1h2n1@dab,c4_c1h2n1@dab,c4_c1h2n1@dab)|xxx
 
 # Supported charge types
 # gaussian: q in e-, w in A
@@ -136,9 +136,9 @@ cha_type 10
 5                 gaussian      0.60000000      1.12504570           # gaussian->(n4_c3zn1@dab)|dabco
 6                 gaussian     -0.04000000      1.16298610           # gaussian->(c4_c1h2n1@dab)|dabco
 7                 gaussian      0.02000000      0.72363870           # gaussian->(h1_c1@dab)|dabco
-8                 gaussian     -0.12000000      1.16298600           # gaussian->(c3_c2h1@ph)|benzene
-9                 gaussian      0.12000000      0.72363800           # gaussian->(h1_c1@ph)|benzene
-10                gaussian      0.00000000      1.12500000           # gaussian->(n3_c3@dab)|xxx
+8                 gaussian      0.00000000      1.12504570           # gaussian->(n4_c3x1@dab)|dabco
+9                 gaussian     -0.12000000      1.16298600           # gaussian->(c3_c2h1@ph)|benzene
+10                gaussian      0.12000000      0.72363800           # gaussian->(h1_c1@ph)|benzene
 
 # Suppoerted types
 # buck6d: ep in kcal/mol, r0 in A
@@ -150,9 +150,9 @@ vdw_type 9
 4                   buck6d      1.93000000      0.04300000           # buck6d->(n4_c3zn1@dab)|dabco
 5                   buck6d      2.04000000      0.02700000           # buck6d->(c4_c1h2n1@dab)|dabco
 6                   buck6d      1.50000000      0.02000000           # buck6d->(h1_c1@dab)|dabco
-7                   buck6d      1.96000000      0.05600000           # buck6d->(c3_c2h1@ph)|benzene
-8                   buck6d      1.50000000      0.02000000           # buck6d->(h1_c1@ph)|benzene
-9                   buck6d      1.93000000      0.04300000           # buck6d->(n3_c3@dab)|xxx
+7                   buck6d      1.93000000      0.04300000           # buck6d->(n4_c3x1@dab)|dabco
+8                   buck6d      1.96000000      0.05600000           # buck6d->(c3_c2h1@ph)|benzene
+9                   buck6d      1.50000000      0.02000000           # buck6d->(h1_c1@ph)|benzene
 
 
 vdwpr_type 0
@@ -160,29 +160,9 @@ vdwpr_type 0
 
 chapr_type 0
 
-azone  1513 1533 1553 1573 1593 1613 1633 1653 1673 1693 1713 1733 1753 1773 1793 1813 1833 1853
+azone 
 
 refsysname xxx
 
-variables 21
-     $b1_0      1.00000000      0.00000000      8.00000000   z   i
-     $b1_1      1.49741473      1.34767326      1.64715620   z   i
-     $a1_0      1.00000000      0.00000000      2.00000000   z   i
-     $a1_1    110.51447215     99.46302494    121.56591937   z   i
-     $a2_0      1.00000000      0.00000000      2.00000000   z   i
-     $a2_1    108.37937225     97.54143502    119.21730947   z   i
-     $a3_0      1.00000000      0.00000000      2.00000000   z   i
-     $a3_1    108.40806504     97.56725854    119.24887154   z   i
-     $d1_0      1.00000000      0.00000000     15.00000000   z   i
-     $d1_1      1.00000000      0.00000000     15.00000000   z   i
-     $d1_2      1.00000000      0.00000000     15.00000000   z   i
-     $d2_0      1.00000000      0.00000000     15.00000000   z   i
-     $d2_1      1.00000000      0.00000000     15.00000000   z   i
-     $d2_2      1.00000000      0.00000000     15.00000000   z   i
-     $d3_0      1.00000000      0.00000000     15.00000000   z   i
-     $d3_1      1.00000000      0.00000000     15.00000000   z   i
-     $d3_2      1.00000000      0.00000000     15.00000000   z   i
-     $d4_0      1.00000000      0.00000000     15.00000000   z   i
-     $d4_1      1.00000000      0.00000000     15.00000000   z   i
-     $d4_2      1.00000000      0.00000000     15.00000000   z   i
+variables 1
 0.00000000      1.00000000      0.00000000      1.00000000   z   i
