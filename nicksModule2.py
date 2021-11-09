@@ -181,7 +181,7 @@ def assignParamsToMfpxFile(mfpxFileName):
 def fixAtypesFragments(mfpxFileName):
     print("fixAtypesFragments called on filename {}".format(mfpxFileName))
     os.system("sed -i -e s/dab1/dab/g {}".format(mfpxFileName))
-    os.system("sed -i -e s/n3_c3/n4_c3x1 {}".format(mfpxFileName))
+    os.system("sed -i -e s/n3_c3/n4_c3x1/g {}".format(mfpxFileName))
     return
 
 def fixDut8ncfpar(mfpxFileName):
